@@ -1,0 +1,20 @@
+---
+version: "0.1"
+matrix:
+  os: [win]
+  # Specs: ["js/tests/unit/alert.spec.js", "js/tests/unit/base-component.spec.js","js/tests/unit/button.spec.js","js/tests/unit/carousel.spec.js","js/tests/unit/collapse.spec.js","dropdown.spec.js","js/tests/unit/modal.spec.js","js/tests/unit/offcanvas.spec.js","js/tests/unit/popover.spec.js","js/tests/unit/scrollspy.spec.js","js/tests/unit/tab.spec.js","js/tests/unit/toastr.spec.js","js/tests/unit/tooltip.spec.js"]
+  # Specs: ["js/tests/unit/alert.spec.js"]
+runson: ${matrix.os}
+env:
+  HYPEREXECUTE: true
+  PLATFORM: 'Windows 10'
+pre:
+  - npm --version
+  - node --version
+  - npm install
+
+testSuites:
+  - npm run js-test-karma 
+runtime:
+  language: node
+  version: 18.15.0

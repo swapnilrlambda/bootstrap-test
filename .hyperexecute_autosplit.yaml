@@ -1,0 +1,46 @@
+version: 0.1
+globalTimeout: 150
+testSuiteTimeout: 150
+testSuiteStep: 150
+
+runson: win
+
+runtime:
+  language: node
+  version: 18.15.0
+
+autosplit: true
+retryOnFailure: false
+# maxRetries: 1
+concurrency: 4
+pre:
+  - npm --version
+  - node --version
+  - npm install
+  - npm install karma -g
+  - npm install karma-jasmine -g
+  - npm install karma-rollup-preprocessor -g
+  - npm install karma-webdriver-launcher -g
+  - npm install karma-jasmine-html-reporter -g
+  - npm install karma-parallel -g
+  - npm install karma-chrome-launcher -g
+  - npm install karma-firefox-launcher -g
+  - npm install karma-detect-browsers -g
+  - npm install karma-coverage-istanbul-reporter -g
+env:
+  HYPEREXECUTE: true
+  PLATFORM: 'Windows 10'
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+post: [cat .hyperexecute_autosplit.yaml]
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  # command: grep -lr 'describe' js/tests/**/*.spec.js
+  #command : grep -lr 'it(' js/tests -ir --include=*spec.js
+  command: |
+            printf 'chromeWin10\nchromeWin10Latest\nfirefoxWin10\nfirefoxWin10Latest'
+
+testRunnerCommand: karma start js/tests/karma.conf.js --browsers=$test
