@@ -99,28 +99,28 @@ const browsers = {
     // },
     chromeWin10: {
       browserName: 'Chrome',
-      browserVersion: '60',
+      browserVersion: '108',
       'LT:Options': {
         platformName: 'Windows 10'
       }
     },
     firefoxWin10: {
       browserName: 'Firefox',
-      browserVersion: '60',
+      browserVersion: '108',
       'LT:Options': {
         platformName: 'Windows 10'
       }
     },
     chromeWin10Latest: {
       browserName: 'Chrome',
-      browserVersion: 'latest',
+      browserVersion: '109',
       'LT:Options': {
         platformName: 'Windows 10'
       }
     },
     firefoxWin10Latest: {
       browserName: 'Firefox',
-      browserVersion: 'latest',
+      browserVersion: '109',
       'LT:Options': {
         platformName: 'Windows 10'
       }
