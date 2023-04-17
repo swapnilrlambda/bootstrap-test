@@ -21,7 +21,7 @@ describe('Alert', () => {
     const alertByElement = new Alert(alertEl)
 
     expect(alertBySelector._element).toEqual(alertEl)
-    expect(alertByElement._element).toEqal(alertEl)
+    expect(alertByElement._element).toEqual(alertEl)
   })
 
   it('should return version', () => {
