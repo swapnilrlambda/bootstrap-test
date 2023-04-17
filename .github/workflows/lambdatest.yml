@@ -6,6 +6,13 @@ on:
       - "**"
       - "!dependabot/**"
   workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        description: LT Username
+      accessKey:
+        description: LT Access Key
+        required: true
 
 env:
   FORCE_COLOR: 2
@@ -16,9 +23,9 @@ permissions:
 
 jobs:
   lambdatest:
-    runs-on: ubuntu-latest
-    if: github.repository == 'twbs/bootstrap'
-    timeout-minutes: 15
+    runs-on: windows-latest
+    if: github.repository == 'swapnilrlambda/bootstrap-test'
+    timeout-minutes: 30
 
     steps:
       - name: Clone repository
@@ -39,9 +46,9 @@ jobs:
         run: npm run dist
 
       - name: Run LambdaTest tests
-        run: npm run js-test-lt-cloud
+        run: npm run js-test-ltcloud
         env:
-          LT_USERNAME: "${{ secrets.LT_USERNAME }}"
-          LT_ACCESS_KEY: "${{ secrets.LT_ACCESS_KEY }}"
+          LT_USERNAME: "${{ github.event.inputs.username }}"
+          LT_ACCESS_KEY: "${{ github.event.inputs.accessKey }}"
           LT_TUNNEL_NAME: "tunnel-${{ github.sha }}"
           GITHUB_SHA: "${{ github.sha }}"
