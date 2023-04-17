@@ -1,4 +1,3 @@
-
 'use strict'
 
 const path = require('node:path')
@@ -10,30 +9,30 @@ const replace = require('@rollup/plugin-replace')
 const { browsers } = require('./browsers.js')
 
 const ENV = process.env
-const HYPEREXECUTE = Boolean(ENV.HYPEREXECUTE)
-const LAMBDATEST = Boolean(ENV.LAMBDATEST)
-const BROWSERSTACK = Boolean(ENV.BROWSERSTACK)
 const DEBUG = Boolean(ENV.DEBUG)
 const JQUERY_TEST = Boolean(ENV.JQUERY)
+const BROWSERSTACK = Boolean(ENV.BROWSERSTACK)
+const LAMBDATEST = Boolean(ENV.LAMBDATEST)
+const HYPEREXECUTE = Boolean(ENV.HYPEREXECUTE)
 
-const webdriverConfig = {
-  hostname: 'hub.lambdatest.com',
-  port: 80
-}
-
-const webdriverConfigMobile = {
-  hostname: 'mobile-hub.lambdatest.com',
-  port: 80
+const webDriverConfig = {
+  desktop: {
+    hostname: 'hub.lambdatest.com',
+    port: 80
+  },
+  mobile: {
+    hostname: 'mobile-hub.lambdatest.com',
+    port: 80
+  }
 }
 
 const frameworks = [
-  'parallel', 'jasmine'
+  'jasmine'
 ]
 
 const plugins = [
   'karma-jasmine',
-  'karma-rollup-preprocessor',
-  require('karma-parallel')
+  'karma-rollup-preprocessor'
 ]
 
 const reporters = ['dots']
@@ -68,11 +67,11 @@ const config = {
   colors: true,
   autoWatch: false,
   singleRun: true,
-  captureTimeout: 90_000,
+  captureTimeout: 180_000,
   browserDisconnectTolerance: 3,
-  browserDisconnectTimeout: 90_000,
-  browserNoActivityTimeout: 90_000,
-  concurrency: Number.POSITIVE_INFINITY,
+  browserDisconnectTimeout: 180_000,
+  browserNoActivityTimeout: 180_000,
+  concurrency: 5,
   client: {
     clearContext: false,
     jasmine: {
@@ -83,7 +82,7 @@ const config = {
     'node_modules/hammer-simulator/index.js',
     {
       pattern: 'js/tests/unit/**/!(jquery).spec.js',
-      watched: !BROWSERSTACK
+      watched: !BROWSERSTACK && !LAMBDATEST
     }
   ],
   preprocessors: {
@@ -116,68 +115,52 @@ const config = {
       sourcemap: 'inline',
       generatedCode: 'es2015'
     }
-  },
-  parallelOptions: {
-    executors: 1,
-    shardStrategy: 'round-robin',
-    maxParallel: 2,
-    stopOnExit: true
   }
 }
 
 if (HYPEREXECUTE) {
-  for (let key in browsers.lambdaTest) {
-    if (browsers.lambdaTest.hasOwnProperty(key) && browsers.lambdaTest[key]['LT:Options'].platformName !== ENV.PLATFORM) {
-      delete browsers.lambdaTest[key];
-    }
-  }
   config.concurrency = 1,
   config.port = 9876,
   config.hostname = 'localhost.lambdatest.com',
-     Object.keys(browsers['lambdaTest']).map(key => {
+    Object.keys(browsers['lambdaTest']).map(key => {
       browsers.lambdaTest[key].base = 'WebDriver'
-      browsers.lambdaTest[key].build = 'HYE0'
+      browsers.lambdaTest[key].build = 'HYE'
       browsers.lambdaTest[key].project = 'Bootstrap'
-      browsers.lambdaTest[key].config = webdriverConfig
+      browsers.lambdaTest[key].config = webDriverConfig.desktop
       browsers.lambdaTest[key].user = ENV.LT_USERNAME
       browsers.lambdaTest[key].accessKey = ENV.LT_ACCESS_KEY
       browsers.lambdaTest[key].console = true
       browsers.lambdaTest[key].network = true
       browsers.lambdaTest[key].pseudoActivityInterval = 5000 // 5000 ms heartbeat
     })
-  plugins.push('karma-webdriver-launcher', 'karma-jasmine', 'karma-jasmine-html-reporter', 'karma-parallel')
+  plugins.push('karma-webdriver-launcher', 'karma-jasmine', 'karma-jasmine-html-reporter')
   config.customLaunchers = browsers.lambdaTest
   config.browsers = Object.keys(browsers.lambdaTest)
   reporters.push('kjhtml')
-  config.parallelOptions = {
-    executors: 1,
-    shardStrategy: 'round-robin',
-    maxParallel: 2,
-    stopOnExit: true
-  }
 } else if (LAMBDATEST) {
   config.hostname = 'localhost.lambdatest.com'
   for (const key of Object.keys(browsers.lambdaTest)) {
+    // console.log(browsers.lambdaTest[key]['LT:Options'].platformName)
     browsers.lambdaTest[key].base = 'WebDriver'
     browsers.lambdaTest[key].build = `bootstrap-${ENV.GITHUB_SHA ? `${ENV.GITHUB_SHA.slice(0, 7)}-` : ''}${new Date().toISOString()}`
     browsers.lambdaTest[key].project = 'Bootstrap'
     if (browsers.lambdaTest[key].isRealMobile) {
-      browsers.lambdaTest[key].config = webdriverConfigMobile
+      browsers.lambdaTest[key].config = webDriverConfig.mobile
       browsers.lambdaTest[key].user = ENV.LT_USERNAME
       browsers.lambdaTest[key].accessKey = ENV.LT_ACCESS_KEY
       browsers.lambdaTest[key].tunnel = true
       browsers.lambdaTest[key].console = true
       browsers.lambdaTest[key].network = true
-      browsers.lambdaTest[key].tunnelName = process.env.LT_TUNNEL_NAME || 'jasmine'
+      browsers.lambdaTest[key].tunnelName = ENV.LT_TUNNEL_NAME || 'jasmine'
       browsers.lambdaTest[key].pseudoActivityInterval = 5000 // 5000 ms heartbeat
     } else {
-      browsers.lambdaTest[key].config = webdriverConfig
+      browsers.lambdaTest[key].config = webDriverConfig.desktop
       browsers.lambdaTest[key]['LT:Options'].username = ENV.LT_USERNAME
       browsers.lambdaTest[key]['LT:Options'].accessKey = ENV.LT_ACCESS_KEY
       browsers.lambdaTest[key]['LT:Options'].tunnel = true
       browsers.lambdaTest[key]['LT:Options'].console = true
       browsers.lambdaTest[key]['LT:Options'].network = true
-      browsers.lambdaTest[key]['LT:Options'].tunnelName = process.env.LT_TUNNEL_NAME || 'jasmine'
+      browsers.lambdaTest[key]['LT:Options'].tunnelName = ENV.LT_TUNNEL_NAME || 'jasmine'
       browsers.lambdaTest[key]['LT:Options'].pseudoActivityInterval = 5000 // 5000 ms heartbeat
     }
 

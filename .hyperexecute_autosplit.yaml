@@ -17,20 +17,9 @@ pre:
   - npm --version
   - node --version
   - npm install
-  - npm install karma -g
-  - npm install karma-jasmine -g
-  - npm install karma-rollup-preprocessor -g
-  - npm install karma-webdriver-launcher -g
-  - npm install karma-jasmine-html-reporter -g
-  - npm install karma-parallel -g
-  - npm install karma-chrome-launcher -g
-  - npm install karma-firefox-launcher -g
-  - npm install karma-detect-browsers -g
-  - npm install karma-coverage-istanbul-reporter -g
 env:
   HYPEREXECUTE: true
-  PLATFORM: 'Windows 10'
-cacheKey: '{{ checksum "package-lock.json" }}'
+cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
 post: [cat .hyperexecute_autosplit.yaml]
@@ -43,4 +32,4 @@ testDiscovery:
   command: |
             printf 'chromeWin10\nchromeWin10Latest\nfirefoxWin10\nfirefoxWin10Latest'
 
-testRunnerCommand: karma start js/tests/karma.conf.js --browsers=$test
+testRunnerCommand: node_modules\.bin\karma start js\tests\karma.conf.js --browsers=$test

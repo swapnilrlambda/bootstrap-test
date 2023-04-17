@@ -14,6 +14,7 @@
 *.swp
 *.vi
 *.zip
+*.exe.old
 *.exe
 *.log
 *~
@@ -30,6 +31,7 @@
 *.sublime-project
 *.sublime-workspace
 nbproject
+hyperexecuteupdate
 Thumbs.db
 /.vscode/
 # Local Netlify folder
