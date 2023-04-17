@@ -46,7 +46,7 @@ jobs:
         run: npm run dist
 
       - name: Run LambdaTest tests
-        run: npm run js-test-ltcloud
+        run: npm run js-test-lt-cloud
         env:
           LT_USERNAME: "${{ github.event.inputs.username }}"
           LT_ACCESS_KEY: "${{ github.event.inputs.accessKey }}"
