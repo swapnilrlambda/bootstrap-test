@@ -31,7 +31,8 @@ jobs:
           chmod +x hyperexecute
           export LT_USERNAME=${{ github.event.inputs.username }}
           export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}
-          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --force-clean-artifacts --config .hyperexecute_autosplit.yaml
+          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml
           echo "Test completion"
+          ls -la
       - name: Report Generation
-        run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt
+        run: cat "artifacts\Reports\coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt"
