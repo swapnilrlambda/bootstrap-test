@@ -33,3 +33,5 @@ jobs:
           export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}
           ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --force-clean-artifacts --config .hyperexecute_autosplit.yaml
           echo "Test completion"
+      - name: Report Generation
+        run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt
