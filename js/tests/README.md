@@ -38,6 +38,7 @@ If not signed up, you need to sign up and simultaneously redirected to Gitpod in
 
 * [Secrets Management](#secrets-management)
 * [Navigation in Automation Dashboard](#navigation-in-automation-dashboard)
+* [GitHub Actions Instructions](#github-actions-instructions)
 
 # Pre-requisites
 
