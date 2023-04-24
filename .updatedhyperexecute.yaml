@@ -8,9 +8,8 @@ preDirectives:
     maxRetries: 0
     shell: ""
     workingDirectory: ""
-post: [tree, cat coverage/**/*.txt]
 postDirectives:
-    commands: [tree, cat coverage/**/*.txt]
+    commands: []
     shell: ""
     workingDirectory: ""
 env:
@@ -31,7 +30,8 @@ testSuiteStep: 150
 cacheDirectories:
     - node_modules
 cacheKey: '{{ checksum "package.json" }}'
-jobID: a2c678cf-5456-49f0-9d30-492c16deef04
+jobID: a875cc43-e139-49ea-b76b-cd7c7bf48d7b
+mergeArtifacts: true
 uploadArtefacts:
     - name: Reports
       path:

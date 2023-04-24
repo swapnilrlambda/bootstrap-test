@@ -22,7 +22,12 @@ env:
 cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
-post: [cat .hyperexecute_autosplit.yaml]
+
+mergeArtifacts: true
+uploadArtefacts:
+ - name: Reports
+   path:
+    - coverage/**/**
 
 testDiscovery:
   type: raw
