@@ -36,9 +36,7 @@ const plugins = [
   require('karma-coverage')
 ]
 
-const reporters = [
-  'coverage'
-]
+const reporters = ['coverage']
 
 const detectBrowsers = {
   usePhantomJS: false,
