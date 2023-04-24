@@ -230,7 +230,7 @@ HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/
 
 In the left sidebar, click the New workflow button.
 
-### Create the GitHub Actions work-flow YAML file
+### 3. Create the GitHub Actions work-flow YAML file
 
 To create the GitHub Actions pipeline YAML file, follow the sample command below:
 
