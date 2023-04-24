@@ -99,7 +99,7 @@ const browsers = {
     // },
     chromeWin10: {
       browserName: 'Chrome',
-      browserVersion: '108',
+      browserVersion: '111',
       'LT:Options': {
         platformName: 'Windows 10'
       }

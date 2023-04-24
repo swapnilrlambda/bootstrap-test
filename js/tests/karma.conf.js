@@ -32,10 +32,13 @@ const frameworks = [
 
 const plugins = [
   'karma-jasmine',
-  'karma-rollup-preprocessor'
+  'karma-rollup-preprocessor',
+  require('karma-coverage')
 ]
 
-const reporters = ['dots']
+const reporters = [
+  'coverage'
+]
 
 const detectBrowsers = {
   usePhantomJS: false,
@@ -88,6 +91,11 @@ const config = {
   preprocessors: {
     'js/tests/unit/**/*.spec.js': ['rollup']
   },
+  coverageReporter: {
+    type: 'text',
+    dir: 'coverage/',
+    file: 'reports.txt'
+  },
   rollupPreprocessor: {
     plugins: [
       replace({
@@ -133,10 +141,10 @@ if (HYPEREXECUTE) {
       browsers.lambdaTest[key].network = true
       browsers.lambdaTest[key].pseudoActivityInterval = 5000 // 5000 ms heartbeat
     })
-  plugins.push('karma-webdriver-launcher', 'karma-jasmine', 'karma-jasmine-html-reporter')
+  plugins.push('karma-webdriver-launcher', 'karma-jasmine', 'karma-coverage')
   config.customLaunchers = browsers.lambdaTest
   config.browsers = Object.keys(browsers.lambdaTest)
-  reporters.push('kjhtml')
+  reporters.push('coverage')
 } else if (LAMBDATEST) {
   config.hostname = 'localhost.lambdatest.com'
   for (const key of Object.keys(browsers.lambdaTest)) {

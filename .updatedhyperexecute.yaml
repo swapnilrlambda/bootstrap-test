@@ -1,0 +1,63 @@
+version: "0.1"
+user: swapnilr
+key: P2JLQmiv9xD2CXQ9NKqhAmCV8vOO39ydUYevlkelG0pZaO4Qdb
+testSuites: []
+pre: [npm --version, node --version, npm install]
+preDirectives:
+    commands: [npm --version, node --version, npm install]
+    maxRetries: 0
+    shell: ""
+    workingDirectory: ""
+post: [tree, cat coverage/**/*.txt]
+postDirectives:
+    commands: [tree, cat coverage/**/*.txt]
+    shell: ""
+    workingDirectory: ""
+env:
+    HYPEREXECUTE: "true"
+runson: win
+autosplit: true
+concurrency: 4
+testDiscovery:
+    autosubset: true
+    command: |
+        printf 'chromeWin10\nchromeWin10Latest\nfirefoxWin10\nfirefoxWin10Latest'
+    mode: dynamic
+    type: raw
+testRunnerCommand: node_modules\.bin\karma start js\tests\karma.conf.js --browsers=$test
+globalTimeout: 150
+testSuiteTimeout: 150
+testSuiteStep: 150
+cacheDirectories:
+    - node_modules
+cacheKey: '{{ checksum "package.json" }}'
+jobID: a2c678cf-5456-49f0-9d30-492c16deef04
+uploadArtefacts:
+    - name: Reports
+      path:
+        - coverage/**/**
+codeDirectory: bootstrap-test
+runtime:
+    language: node
+    version: 18.15.0
+    addons: []
+framework:
+    name: ""
+    flags: []
+    discoveryFlags: []
+    discoveryType: ""
+    runnerFlags: []
+    workingDirectory: ""
+    isTestNGXMLSuite: false
+    defaultReports: true
+    additional_args: null
+    licenseKey: ""
+    userdefinediscovery: false
+    toscaArgs: null
+cypress: false
+betaFeature:
+    setPartiallyCompletedAsCompleted: false
+combineTasksInMatrixMode: false
+captureScreenRecordingForScenarios: false
+maxRetriesPreSteps: 0
+triggerMode: false
