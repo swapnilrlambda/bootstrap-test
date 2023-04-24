@@ -10,7 +10,8 @@ The overall experience helps teams test code and fix issues at a much faster pac
 
 To know more about how HyperExecute does intelligent Test Orchestration, do check out [HyperExecute Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hyperexecute/)
 
-[<img alt="Try it now" width="200 px" align="center" src="" />](https://hyperexecute.lambdatest.com/?utm_source=github&utm_medium=repository&utm_content=javascript&utm_term=nightwatch)
+[<img alt="Try it now" width="200 px" align="center" src="![image](https://user-images.githubusercontent.com/128702372/234123607-60710cad-0bc0-4b9a-a374-118042c7a2f5.png)
+" />](https://hyperexecute.lambdatest.com/?utm_source=github&utm_medium=repository&utm_content=javascript&utm_term=nightwatch)
 
 <!---If logged in, it will be redirected to Gitpod editor in new tab where current tab will show hyperexecute dashboard.
 
@@ -231,6 +232,8 @@ HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/
 
 In the left sidebar, click the New workflow button.
 
+![image](https://user-images.githubusercontent.com/128702372/234122303-3519a62a-e661-4af3-a7d6-cfb60bec82c8.png)
+
 ### 3. Create the GitHub Actions work-flow YAML file
 
 To create the GitHub Actions pipeline YAML file, follow the sample command below:
@@ -286,9 +289,23 @@ jobs:
 	- In the second step it downloads the HyperExecute CLI binary.
 	- The third step is the execution command which executes The Hyperexecute CLI binary. This contains LambdaTest username, access key, and path of the Yaml created for Hyperexecute. You can find more information on this here.
 
+![image](https://user-images.githubusercontent.com/128702372/234122457-83f7faf8-cd41-4095-a0b9-7ca9a8758fc8.png)
+
+
 ### 4. Run the Workflow
 
 To run the new pipeline that you just created, click the Run workflow button on the workflow page.
+
+![image](https://user-images.githubusercontent.com/128702372/234122584-b45d3421-399d-47ce-8c44-bc5781aa0f8a.png)
+
+### Below is an example of how a test that is run on the GitHub Actions pipeline gets executed:
+
+![image](https://user-images.githubusercontent.com/128702372/234123008-421d6b7b-a149-4a15-8334-cbfaaff85509.png)
+
+### Below is an example of a Hyperexecute job that was triggered through the above pipeline:
+
+![image](https://user-images.githubusercontent.com/128702372/234123083-38aca641-0248-491d-ba6a-1ce710540789.png)
+
 
 ## We are here to help you :)
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
