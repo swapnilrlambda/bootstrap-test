@@ -146,17 +146,16 @@ testDiscovery:
 Running the above command on the terminal will give a list of browser that are located in the Project folder:
 
 Test Discovery Output:
-chromeWin10
-chromeWin10Latest
-firefoxWin10
-firefoxWin10Latest
+- chromeWin10
+- chromeWin10Latest
+- firefoxWin10
+- firefoxWin10Latest
 
 The *testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
 
 ```yaml
 testRunnerCommand: node_modules\.bin\karma start js\tests\karma.conf.js --browsers=$test
 ```
-![image](https://user-images.githubusercontent.com/47247309/160444773-701b3fca-1db1-48c3-9aa6-56a20bdf7dab.png)
 
 
 ### Artifacts Management
@@ -174,7 +173,6 @@ uploadArtefacts:
     - coverage/**/**
 
 ```
-![image](https://user-images.githubusercontent.com/47247309/160446954-36c7de8e-0825-48e3-bf0b-e513a44921da.png)
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on *Artifacts* button corresponding to the associated TestID.
 
