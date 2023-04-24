@@ -185,9 +185,6 @@ hyperexecute.exe --user <username> --key <accessToken> --config .hyperexecute_au
 ```
 Visit [HyperExecute Profile Page](https://accounts.lambdatest.com/detail/profile) to get the username and accessToken
 
-![image](https://user-images.githubusercontent.com/47247309/160447081-743a7763-da10-47ea-9679-41feadc404ae.png)
-
-
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution
 
 ## Run Hyperexecute tests on Mac and Linux platforms
@@ -222,18 +219,18 @@ env:
 
 HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/to *HyperExecute Logs*. You also get relevant get relevant Selenium test details like video, network log, commands, Exceptions & more in the Dashboard. Effortlessly navigate from the automation dashboard to HyperExecute logs (and vice-versa) to get more details of the test execution.
 
-### GitHub Actions Instructions
+## GitHub Actions Instructions
 
-## 1. Log into your GitHub account
+### 1. Log into your GitHub account
 
-Navigate to the main page of the repository.
-Under your repository name, click Actions.
+- Navigate to the main page of the repository.
+- Under your repository name, click Actions.
 
-## 2. Create a New Workflow
+### 2. Create a New Workflow
 
 In the left sidebar, click the New workflow button.
 
-## Create the GitHub Actions work-flow YAML file
+### Create the GitHub Actions work-flow YAML file
 
 To create the GitHub Actions pipeline YAML file, follow the sample command below:
 
@@ -288,7 +285,7 @@ jobs:
 	- In the second step it downloads the HyperExecute CLI binary.
 	- The third step is the execution command which executes The Hyperexecute CLI binary. This contains LambdaTest username, access key, and path of the Yaml created for Hyperexecute. You can find more information on this here.
 
-## 4. Run the Workflow
+### 4. Run the Workflow
 
 To run the new pipeline that you just created, click the Run workflow button on the workflow page.
 
@@ -296,6 +293,7 @@ To run the new pipeline that you just created, click the Run workflow button on 
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
 * HyperExecute HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hyperexecute/
 * Lambdatest HomePage: https://www.lambdatest.com
+
 
 
 ## How does Bootstrap's test suite work?
