@@ -72,17 +72,9 @@ it('should show a tooltip without the animation', () => {
 })
 ```
 
-<img height="100" alt="hyperexecute_logo" src="https://user-images.githubusercontent.com/1688653/159473714-384e60ba-d830-435e-a33f-730df3c3ebc6.png">
+<img height="25" alt="hyperexecute_logo" src="https://user-images.githubusercontent.com/1688653/159473714-384e60ba-d830-435e-a33f-730df3c3ebc6.png">
 
 HyperExecute is a smart test orchestration platform to run end-to-end Selenium tests at the fastest speed possible. HyperExecute lets you achieve an accelerated time to market by providing a test infrastructure that offers optimal speed, test orchestration, and detailed execution logs.
-
-The overall experience helps teams test code and fix issues at a much faster pace. HyperExecute is configured using a YAML file. Instead of moving the Hub close to you, HyperExecute brings the test scripts close to the Hub!
-
-* <b>HyperExecute HomePage</b>: https://www.lambdatest.com/hyperexecute
-* <b>Lambdatest HomePage</b>: https://www.lambdatest.com
-* <b>LambdaTest Support</b>: [support@lambdatest.com](mailto:support@lambdatest.com)
-
-To know more about how HyperExecute does intelligent Test Orchestration, do check out [HyperExecute Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hyperexecute/)
 
 <!---If logged in, it will be redirected to Gitpod editor in new tab where current tab will show hyperexecute dashboard.
 
@@ -102,7 +94,7 @@ The runson key determines the platform (or operating system) on which the tests 
 
 2. autosplit
 
-autosplit feature comes handy when you want to run tests at predefined concurrency and distribute the tests over the available infrastructure. Setting this boolean value to true enables autosplit. For more information on the Auto split feature, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
+autosplit feature comes handy when you want to run tests at predefined concurrency and distribute the tests over the available infrastructure. Setting this boolean value to true enables autosplit.
 
 ```yaml
     autosplit: true   
@@ -154,7 +146,7 @@ A vault is a secure place to safe-keep data and sensitive company information wh
 
 8. concurrency
 
-Concurrency indicates the number of concurrent sessions on HyperExecute. For more information on concurrency, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
+Concurrency indicates the number of concurrent sessions on HyperExecute.
 
 ```yaml
   concurrency: 1   
@@ -250,7 +242,7 @@ This feature allows you to either run your jobs faster or fail fast to provide f
 
 This field allows you to generate the test reports in the location of your choice.
 
-- email: You can also get your job reports as an email by conifguring the email key under partialReports. To learn more about this feature, go through [this page](https://www.lambdatest.com/support/docs/he-email-reports).
+- email: You can also get your job reports as an email by conifguring the email key under partialReports.
 
 ```yaml
   report: true
@@ -320,8 +312,3 @@ jobs:
       - name: Report Generation
         run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt  
 ```
-
-## We are here to help you :)
-* LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
-* HyperExecute HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hyperexecute/
-* Lambdatest HomePage: https://www.lambdatest.com
