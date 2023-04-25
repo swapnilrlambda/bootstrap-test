@@ -130,6 +130,10 @@ A vault is a secure place to safe-keep data and sensitive company information wh
 
 Indicates the number of concurrent sessions on HyperExecute. For more information on concurrency, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
 
+```yaml
+  concurrency: 1   
+```
+
 12. preDirectives or pre
 
 All actions you need to perform before test execution, such as, installing dependencies.
