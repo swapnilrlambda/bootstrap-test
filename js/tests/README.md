@@ -237,11 +237,11 @@ jobs:
         shell: bash
         run: |
           # git clone ${{ github.event.inputs.sampleRepoLink }} 
-          **curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe** 
-          **chmod +x hyperexecute**
+          curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe 
+          chmod +x hyperexecute
           export LT_USERNAME=${{ github.event.inputs.username }} 
           export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }} 
-          **./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml**  
+          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml 
           echo "Test completion"
       - name: Report Generation
         run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt  
