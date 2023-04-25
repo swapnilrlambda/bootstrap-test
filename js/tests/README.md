@@ -28,12 +28,6 @@ If not signed up, you need to sign up and simultaneously redirected to Gitpod in
    - [Artifacts Management](#artifacts-management)
    - [Test Execution](#test-execution)
 
-* [Matrix Execution with NightWatch](#matrix-execution-with-nightwatch)
-   - [Core](#core-1)
-   - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching-1)
-   - [Artifacts Management](#artifacts-management-1)
-   - [Test Execution](#test-execution-1)
-
 * [Secrets Management](#secrets-management)
 * [Navigation in Automation Dashboard](#navigation-in-automation-dashboard)
 * [GitHub Actions Instructions](#github-actions-instructions)
