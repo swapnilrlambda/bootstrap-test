@@ -256,15 +256,15 @@ jobs:
       - name: Starting CLI testing  # this starts the hyperexecute process
         shell: bash
         run: |
-          # git clone ${{ github.event.inputs.sampleRepoLink }}   # clones the above mentioned repo
-          curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe    # downloads hyperexecute cli
+          # git clone ${{ github.event.inputs.sampleRepoLink }} 
+          curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe 
           chmod +x hyperexecute
-          export LT_USERNAME=${{ github.event.inputs.username }}   # exports the above inserted username
-          export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}  # exports the above inserted accessToken
-          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml   # command whichtriggers the test
+          export LT_USERNAME=${{ github.event.inputs.username }} 
+          export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }} 
+          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml   
           echo "Test completion"
       - name: Report Generation
-        run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt   # generates report after test completion
+        run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt  
 ```
 - On:
 	- Workflow_dispatch: In the workflow_dispatch section, you should declare the pre-defined variables that will be used before running the GitHub Actions PipeLine as an input.
