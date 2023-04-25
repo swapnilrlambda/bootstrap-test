@@ -16,6 +16,240 @@ If not logged in, it will be redirected to Login/Signup page and simultaneously 
 
 If not signed up, you need to sign up and simultaneously redirected to Gitpod in a new tab where current tab will show hyperexecute dashboard.--->
 
+# HyperExecute v/s Traditional Test Grids
+
+Traditional automation testing solutions are slow since the triggered test scenarios are first sent to the Hub, which in turn are scheduled to run on the best-suited Node. This results in unnecessary lag as a number of components are involved in the entire process. Over & above, multiple network hops with the network separated components results in increased test flakiness, a factor that can be a huge hindrance to time-to-market.
+
+HyperExecute merges all the components into a single execution environment, thereby ensuring all the components talk to each other just like they are in a local network. This eventually helps in achieving native-like performance (on the cloud)! Over & above, you also have the flexibility of enabling all the features that are available in a cloud grid.
+
+![image](https://user-images.githubusercontent.com/128702372/234190064-5aeb99d7-2d6d-4ab1-bf39-456966e20ed4.png)
+
+On the other hand, HyperExecute accelerates test execution at a massive scale with proprietary features mentioned below:
+
+- Smart Auto Test Splitting for parallel test execution through custom filters
+- Matrix-based build multiplexing allows users to run the single command over multiple scenarios/conditions/environments by creating a matrix of all the combinations. This is best-suited for regression testing, better coverage and achieving a more stable codebase.
+- Auto purging of environments after build completion
+- Smart Caching for speeding up the regression tests
+
+Security is at the core of all the tests run using HyperExecute. The test execution logs are encrypted and backed by the Azure cloud storage. This is applicable irrespective of whether the data is in motion or at rest. There is a continuous auditing to secure your test execution environment(s).
+
+Hyperscale of HyperExecute allows users to have fine grain control over test execution concurrency using YAML files.
+
+Here is the diagrammatic representation of how tests are run on the HyperExecute infrastructure:
+
+![image](https://user-images.githubusercontent.com/128702372/234190239-e9a490ae-10ba-4170-8143-ea05bdc44e7c.png)
+
+As seen above, tests are securely run on dedicated machines on the Azure cloud. The cloud (for execution) is chosen based on the location from where concierge (i.e. HyperExecute CLI) is triggered.
+
+# Detailed Description of Hyperexecute Yaml
+
+1. globalTimeout
+
+Total time in minutes after which your test execution should stop. You can allocate the globalTimeout value from 1 minute to 150 minutes, and it is set to 90 minutes by default.
+
+```yaml
+    globalTimeout: 90   
+```
+2. testSuiteTimeout
+
+Timeout in minutes after which your test suite will end. You can allocate the testSuiteTimeout value from 1 minute to 150 minutes, and it is set to 90 minutes by default.
+
+```yaml
+    testSuiteTimeout: 90  
+```
+
+3. testSuiteStep
+
+Timeout in minutes after which your test suite will end. You can allocate the testSuiteStep value from 1 minute to 150 minutes, and it is set to 90 minutes by default.
+
+```yaml
+    testSuiteStep: 90  
+```
+
+4. runson
+
+OS on which you will run your Test. You can run your tests on Linux(linux), MacOS(macos) or Windows(win).
+
+```yaml
+    runson: win   
+```
+
+5. autosplit
+
+If your Auto Split test has to be enabled, set this boolean value to true. For more information on the Auto split feature, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
+
+```yaml
+    autosplit: true   
+```
+
+6. retryOnFailure
+
+If your testSuite fails and you want to retry it, set this boolean value to true. The maxRetries key determines how many times your tests will get retried.
+
+```yaml
+    retryOnFailure: true    
+```
+7. maxRetries
+
+The maximum number of times your tests can be retried. You can allocate a numerical value between 1 and 5 for this field.
+
+```yaml
+    maxRetries: 2   
+```
+
+8. testDiscovery
+
+A command used to discover (or locate) relevant tests via class names, filters, file names, and more.
+
+```yaml
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: |
+            printf 'chromeWin10\nchromeWin10Latest\nfirefoxWin10\nfirefoxWin10Latest'
+```
+
+9. testRunnerCommand
+
+This is the command that your testing framework uses to trigger the execution of the test.
+
+```yaml
+testRunnerCommand: node_modules\.bin\karma start js\tests\karma.conf.js --browsers=$test
+```
+
+10. vault
+
+A vault is a secure place to safe-keep data and sensitive company information while you're running tests.
+
+```yaml
+  env:
+    PAT: ${{ .secrets.Token }}  //PAT: Personal Access Token
+```
+
+11. concurrency
+
+Indicates the number of concurrent sessions on HyperExecute. For more information on concurrency, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
+
+12. preDirectives or pre
+
+All actions you need to perform before test execution, such as, installing dependencies.
+
+- If both pre or preDirectives flags are used at the same time, then the precedence is given to the preDirectives flag.
+- maxRetries: You can retry the commands that failed in the pre-stage by using this flag. The numerical value assigned to this field determines the amount of times you can retry the failed commands.
+
+```yaml
+  preDirectives:
+    commands: 
+      - mkdir -p m2_cache_dir
+      - mvn -Dmaven.repo.local=$CACHE_DIR -Dmaven.test.skip=true clean install  
+    maxRetries: 3
+```
+
+13. postDirectives or post
+
+All the actions you need to perform after test execution.
+
+- If both post or postDirectives flags are used at the same time, then the precedence is given to the postDirectives flag.
+
+```yaml
+  postDirectives:
+    - cat yaml/win/*.*hyperexecute_autosplits.yaml 
+```
+
+14. cachekey
+
+A cache key is the unique identifier for every object in the cache of the testsuite.
+
+```yaml
+  {{ checksum "package-lock.json" }}
+```
+
+15. cacheDirectories
+
+Cached directories are the dependency directories of your test suite such as node modules. HyperExecute caches them to help fasten your test execution time the next time you run your job. However, if you modify the dependency directories, they will be downloaded, resolved and cached again.
+
+```yaml
+  cacheDirectories:
+    - CacheDir
+```
+
+16. uploadArtifacts
+
+The uploadArtifacts key contains the path and the name of the file which you want to download.
+
+```yaml
+uploadArtefacts:
+ - name: Reports
+   path:
+    - coverage/**/**
+```
+
+17. version
+
+The version of HyperExecute YAML being used to run the tests.
+
+```yaml
+  version: 0.1
+```
+
+18. tunnelOpts
+
+You can opt to use a tunnel for the entire testing process. If you want to use a tunnel selectively (either in pre steps or post steps), you can change the global field to preOnly or postOnly and set it to true.
+
+```yaml
+  tunnelOpts:
+    global: true
+```
+
+19. runtime
+
+|This provides the runtime for specific languages in specific versions. You can visit this page to go through all of the languages and frameworks that HyperExecute supports.
+
+```yaml
+  runtime:
+    language: dotnet
+    version: "6.0.303"
+```
+
+20. jobLabel
+
+The jobLabel YAML key is used to add tags or labels to jobs. This allows you to search your jobs using the labels or tags assigned to them.
+
+- Prioritize Your Job Pipeline: To prioritize your jobs, you need to add the required priority to the jobLabel key in the YAML file e.g jobLabel: [ 'high', 'Low','medium']. With 'high' priority jobs triggered first, followed by medium priority jobs and finally low priority jobs. The values are case insensitive and the default priority is 'medium'.
+- You can also use it along with your existing job labels like this:
+
+```yaml
+    jobLabel: [ '${DATE} - ${DAY}','Foo','Bar', 'low']
+```
+
+21. failFast
+
+This feature allows you to either run your jobs faster or fail fast to provide faster feedback and save your test time.
+
+- maxNumberOfTests: You can customize your Fail Fast feature according to your needs by providing the number of consecutive tests that can fail in this section.
+
+```yaml
+      failFast:
+    maxNumberOfTests: 2
+```
+
+22. report
+
+This field allows you to generate the test reports in the location of your choice.
+
+email: You can also get your job reports as an email by conifguring the email key under partialReports. To learn more about this feature, go through [this page](https://www.lambdatest.com/support/docs/he-email-reports).
+
+```yaml
+  report: true
+  partialReports:
+    location: target/cucumber-reports/
+    frameworkName: cucumber
+    type: json
+    email:
+      to:
+        - johndoe@example.com 
+ ```
+
 # How to run Selenium automation tests on HyperExecute
 
 * [Pre-requisites](#pre-requisites)
