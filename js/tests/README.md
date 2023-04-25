@@ -20,7 +20,7 @@ If not signed up, you need to sign up and simultaneously redirected to Gitpod in
 
 1. runson
 
-OS on which you will run your Test. You can run your tests on Linux(linux), MacOS(macos) or Windows(win).
+The runson key determines the platform (or operating system) on which the tests are executed. Here we can use win for Windows, mac for MacOS, linux for Linux.
 
 ```yaml
     runson: win   
@@ -28,7 +28,7 @@ OS on which you will run your Test. You can run your tests on Linux(linux), MacO
 
 2. autosplit
 
-If your Auto Split test has to be enabled, set this boolean value to true. For more information on the Auto split feature, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
+autosplit feature comes handy when you want to run tests at predefined concurrency and distribute the tests over the available infrastructure. Setting this boolean value to true enables autosplit. For more information on the Auto split feature, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
 
 ```yaml
     autosplit: true   
@@ -36,7 +36,7 @@ If your Auto Split test has to be enabled, set this boolean value to true. For m
 
 3. retryOnFailure
 
-If your testSuite fails and you want to retry it, set this boolean value to true. The maxRetries key determines how many times your tests will get retried.
+In case any test fails and you want to retry it, set this boolean value to true. The maxRetries key determines how many times your tests will get retried.
 
 ```yaml
     retryOnFailure: true    
@@ -51,7 +51,7 @@ The maximum number of times your tests can be retried. You can allocate a numeri
 
 5. testDiscovery
 
-A command used to discover (or locate) relevant tests via class names, filters, file names, and more.
+This is the command used to discover (or locate) relevant tests via class names, filters, file names, and more.
 
 ```yaml
 testDiscovery:
@@ -80,7 +80,7 @@ A vault is a secure place to safe-keep data and sensitive company information wh
 
 8. concurrency
 
-Indicates the number of concurrent sessions on HyperExecute. For more information on concurrency, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
+Concurrency indicates the number of concurrent sessions on HyperExecute. For more information on concurrency, go to [this page](https://www.lambdatest.com/support/docs/he-smart-auto/).
 
 ```yaml
   concurrency: 1   
@@ -88,7 +88,7 @@ Indicates the number of concurrent sessions on HyperExecute. For more informatio
 
 9. preDirectives or pre
 
-All actions you need to perform before test execution, such as, installing dependencies.
+preDirectives or pre includes all the actions one needs to perform before test execution, such as, installing dependencies.
 
 - If both pre or preDirectives flags are used at the same time, then the precedence is given to the preDirectives flag.
 - maxRetries: You can retry the commands that failed in the pre-stage by using this flag. The numerical value assigned to this field determines the amount of times you can retry the failed commands.
@@ -103,7 +103,7 @@ All actions you need to perform before test execution, such as, installing depen
 
 10. postDirectives or post
 
-All the actions you need to perform after test execution.
+postDirectives or post includes all the actions one needs to perform after test execution.
 
 - If both post or postDirectives flags are used at the same time, then the precedence is given to the postDirectives flag.
 
@@ -142,7 +142,7 @@ uploadArtefacts:
 
 14. runtime
 
-|This provides the runtime for specific languages in specific versions. You can visit this page to go through all of the languages and frameworks that HyperExecute supports.
+This flag provides the runtime for specific languages in specific versions.
 
 ```yaml
   runtime:
@@ -176,7 +176,7 @@ This feature allows you to either run your jobs faster or fail fast to provide f
 
 This field allows you to generate the test reports in the location of your choice.
 
-email: You can also get your job reports as an email by conifguring the email key under partialReports. To learn more about this feature, go through [this page](https://www.lambdatest.com/support/docs/he-email-reports).
+- email: You can also get your job reports as an email by conifguring the email key under partialReports. To learn more about this feature, go through [this page](https://www.lambdatest.com/support/docs/he-email-reports).
 
 ```yaml
   report: true
