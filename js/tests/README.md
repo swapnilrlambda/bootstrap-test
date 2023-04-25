@@ -210,7 +210,7 @@ env:
 
 HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/to *HyperExecute Logs*. You also get relevant get relevant Selenium test details like video, network log, commands, Exceptions & more in the Dashboard. Effortlessly navigate from the automation dashboard to HyperExecute logs (and vice-versa) to get more details of the test execution.
 
-## GitHub Actions Instructions
+# GitHub Actions Instructions
 
 ### 1. Log into your GitHub account
 
@@ -232,39 +232,39 @@ name: HyperExecute
 on:
   workflow_dispatch:
     inputs:
-      username:
+      username:  # This will ask for the LT username which you can access from https://accounts.lambdatest.com/detail/profile
         required: true
-        description: LT Username
-      accessKey:
+        description: LT Username 
+      accessKey: # This will ask for the LT accessToken which you can access from https://accounts.lambdatest.com/detail/profile
         description: LT Access Key
         required: true
-      sampleRepoLink: 
+      sampleRepoLink: # This will show the default bootstrap repo to be used for testing, you may change it with other bootstrap repos
         description: Link to the HyperExecute repo for bootstrap
         default: 
         required: true
 jobs:
   bootstrap-hye-lambda:
-    runs-on: windows-latest
-    timeout-minutes: 90
+    runs-on: windows-latest  # os on which test will be performed
+    timeout-minutes: 90  # test time out minutes
     strategy:
-      fail-fast: false
+      fail-fast: false  
     steps:
-      - name: Checkout sources
+      - name: Checkout sources   
         uses: actions/checkout@v2
         with:
           persist-credentials: false
-      - name: Starting CLI testing
+      - name: Starting CLI testing  # this starts the hyperexecute process
         shell: bash
         run: |
-          # git clone ${{ github.event.inputs.sampleRepoLink }}
-          curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe
+          # git clone ${{ github.event.inputs.sampleRepoLink }}   # clones the above mentioned repo
+          curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe    # downloads hyperexecute cli
           chmod +x hyperexecute
-          export LT_USERNAME=${{ github.event.inputs.username }}
-          export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}
-          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml
+          export LT_USERNAME=${{ github.event.inputs.username }}   # exports the above inserted username
+          export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}  # exports the above inserted accessToken
+          ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml   # command whichtriggers the test
           echo "Test completion"
       - name: Report Generation
-        run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt
+        run: cat coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt   # generates report after test completion
 ```
 - On:
 	- Workflow_dispatch: In the workflow_dispatch section, you should declare the pre-defined variables that will be used before running the GitHub Actions PipeLine as an input.
