@@ -82,7 +82,7 @@ If not logged in, it will be redirected to Login/Signup page and simultaneously 
 
 If not signed up, you need to sign up and simultaneously redirected to Gitpod in a new tab where current tab will show hyperexecute dashboard.--->
 
-# Detailed Description of Hyperexecute Yaml
+## Detailed Description of Hyperexecute Yaml
 
 1. runson
 
@@ -255,7 +255,7 @@ This field allows you to generate the test reports in the location of your choic
         - johndoe@example.com 
  ```
 
-# Steps to integrate GitHub Actions with HyperExecute
+## Steps to integrate GitHub Actions with HyperExecute
 
 There are three simple steps to integrate HyperExecute with GitHub Actions
 
