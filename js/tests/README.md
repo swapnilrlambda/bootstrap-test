@@ -82,7 +82,7 @@ If not logged in, it will be redirected to Login/Signup page and simultaneously 
 
 If not signed up, you need to sign up and simultaneously redirected to Gitpod in a new tab where current tab will show hyperexecute dashboard.--->
 
-## Detailed Description of Hyperexecute Yaml
+## Detailed Description of HyperExecute Yaml
 
 1. runson
 
