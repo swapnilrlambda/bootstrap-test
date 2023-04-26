@@ -10,7 +10,7 @@ on:
         required: true
 jobs:
   bootstrap-hye-lambda:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 90
     strategy:
       fail-fast: false
@@ -22,12 +22,9 @@ jobs:
       - name: Starting CLI testing
         shell: bash
         run: |
-          curl https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute -o hyperexecute
+          curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe
           chmod +x hyperexecute
           export LT_USERNAME=${{ github.event.inputs.username }}
           export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}
           ./hyperexecute --user $LT_USERNAME --key $LT_ACCESS_KEY --download-artifacts --config .hyperexecute_autosplit.yaml
           echo "Test completion"
-          ls -la
-      - name: Report Generation
-        run: cat "artifacts\Reports\coverage\Chrome 109.0.0.0 (Windows 10)\reports.txt"
