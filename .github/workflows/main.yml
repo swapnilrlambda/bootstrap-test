@@ -8,10 +8,6 @@ on:
       accessKey:
         description: LT Access Key
         required: true
-      sampleRepoLink: 
-        description: Link to the HyperExecute repo for bootstrap
-        default: https://github.com/swapnilrlambda/bootstrap-test
-        required: true
 jobs:
   bootstrap-hye-lambda:
     runs-on: windows-latest
@@ -26,7 +22,6 @@ jobs:
       - name: Starting CLI testing
         shell: bash
         run: |
-          # git clone ${{ github.event.inputs.sampleRepoLink }}
           curl https://downloads.lambdatest.com/hyperexecute/windows/hyperexecute.exe -o hyperexecute.exe
           chmod +x hyperexecute
           export LT_USERNAME=${{ github.event.inputs.username }}
