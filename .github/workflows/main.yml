@@ -22,7 +22,7 @@ jobs:
       - name: Starting CLI testing
         shell: bash
         run: |
-          curl https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute
+          curl https://downloads.lambdatest.com/hyperexecute/linux/hyperexecute -o hyperexecute
           chmod +x hyperexecute
           export LT_USERNAME=${{ github.event.inputs.username }}
           export LT_ACCESS_KEY=${{ github.event.inputs.accessKey }}
